@@ -201,6 +201,10 @@ table {
     box-shadow: 1px 1px;
 }
 
+#course h2 {
+    pointer-events: none;
+}
+
 #course .detail {
     visibility: hidden;
     width: 300px;
@@ -216,6 +220,27 @@ table {
     top: 110%;
     left: 50%;
     margin-left: -60px;
+}
+
+#course-selected .detail {
+    visibility: hidden;
+    width: 300px;
+    height: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+#course-selected h2 {
+    pointer-events: none;
 }
 
 #course:hover {

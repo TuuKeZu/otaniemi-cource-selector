@@ -69,6 +69,7 @@ const Initialize = async () => {
     const Render = () => {
         state.periods = {};
         CONTAINER.replaceChildren([]);
+        console.log('Rendering..');
 
         state.data.periodit.forEach((period, index) => {
 
@@ -98,7 +99,9 @@ const Initialize = async () => {
                 const courseElement = document.createElement('div');
                 courseElement.id = state.selected.includes(course.nimi) ? 'course-selected' : 'course';
                 courseElement.className = course.class;
-                courseElement.textContent = course.nimi;
+                const nameElement = document.createElement('h2');
+                nameElement.textContent = course.nimi;
+                courseElement.appendChild(nameElement);
 
                 const detailElement = document.createElement('span');
                 detailElement.className = 'detail';
@@ -122,7 +125,7 @@ const Initialize = async () => {
     document.addEventListener('click', (e) => {
         const allowed = ['course', 'course-selected']
         if (!allowed.includes(e.target.id)) return;
-        const course = e.target.textContent;
+        const course = e.target.children[0].textContent;
 
         if (state.selected.includes(course)) {
             state.selected = removeSelectedCourse(course);
