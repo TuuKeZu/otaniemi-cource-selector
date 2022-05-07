@@ -239,7 +239,28 @@ table {
     margin-left: -60px;
 }
 
+#course-friend .detail {
+    visibility: hidden;
+    width: 300px;
+    height: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    left: 50%;
+    margin-left: -60px;
+}
+
 #course-selected h2 {
+    pointer-events: none;
+}
+
+#course-friend h2 {
     pointer-events: none;
 }
 
@@ -258,6 +279,13 @@ table {
     filter: brightness(60%);
 }
 
+#course-friend {
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 1px 1px;
+    filter: brightness(70%);
+    background-color: rgb(255, 91, 91);
+}
 
 /*Classes scraped from Wilma*/
 
@@ -293,4 +321,39 @@ table {
 
 .k70F27363_35766-off {
     background-color: var(--light-blue);
+}
+
+.tools {
+    width: 100%;
+    height: auto;
+    background-color: #006199;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tools h1 {
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.tools input {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    outline: none;
+
+    color: rgb(159, 159, 159);
+}
+
+.tools button {
+    height: 40px;
+    background-color: #006199;
+    border: none;
+    color: white;
+}
+
+.tools button:hover {
+    background-color: #005281;
 }

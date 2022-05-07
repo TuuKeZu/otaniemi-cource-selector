@@ -59,12 +59,17 @@ const Initialize = async () => {
             '5A',
             '5B'
         ],
-        selected: getSelectedCourses()
+        selected: getSelectedCourses(),
+        selectedFriend: []
     }
 
     console.log(state.selected);
 
     const CONTAINER = document.getElementById('container');
+    const YOU_FIELD = document.getElementById('you-field');
+    const FRIEND_FIELD = document.getElementById('friend-field');
+    const COPY_BUTTON = document.getElementById('copy-button');
+    const APPLY_BUTTON = document.getElementById('apply-button');
 
     const Render = () => {
         state.periods = {};
@@ -97,7 +102,7 @@ const Initialize = async () => {
 
             period.kurssit.forEach(course => {
                 const courseElement = document.createElement('div');
-                courseElement.id = state.selected.includes(course.nimi) ? 'course-selected' : 'course';
+                courseElement.id = state.selected.includes(course.nimi) ? 'course-selected' : state.selectedFriend.includes(course.nimi) ? 'course-friend' : 'course';
                 courseElement.className = course.class;
                 const nameElement = document.createElement('h2');
                 nameElement.textContent = course.nimi;
@@ -117,7 +122,9 @@ const Initialize = async () => {
 
         state.periodList.forEach(key => {
             CONTAINER.appendChild(state.periods[key]);
-        })
+        });
+
+        YOU_FIELD.value = JSON.stringify(state.selected);
     }
 
     Render();
@@ -135,5 +142,15 @@ const Initialize = async () => {
         }
 
         Render();
-    })
+    });
+
+    COPY_BUTTON.addEventListener('click', () => {
+        navigator.clipboard.writeText(YOU_FIELD.value);
+    });
+
+    APPLY_BUTTON.addEventListener('click', () => {
+        state.selectedFriend = JSON.parse(FRIEND_FIELD.value);
+        Render();
+    });
+
 }
