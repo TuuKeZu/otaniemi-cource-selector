@@ -1,0 +1,250 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Tuukka Moilanen 2022 */
+
+:root {
+    --green: #BFFFBF;
+    --aqua: #80FFFF;
+    --red: #FFC1C1;
+    --gray: #E8E8FF;
+    --blue: #8080C0;
+    --pink: #FFE1E1;
+    --light-blue: #BFBFFF;
+    font-family: Sans, OpenSansFallback, sans-serif;
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.period {
+    width: 80%;
+    height: auto;
+    padding: 40px;
+    background-color: whitesmoke;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    flex-direction: column;
+}
+
+.period h3 {
+    float: inline-start;
+    padding: 20px;
+    padding-left: 0;
+    margin: 20px;
+    width: 90%;
+    font-size: 20px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.bar {
+    margin: 10px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+#course {
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 1px 1px;
+}
+
+
+#course:hover {
+    filter: brightness(80%);
+}
+
+#course-selected {
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 1px 1px;
+    filter: brightness(60%);
+}
+
+/*Classes scraped from Wilma*/
+
+/*Mandatory courses*/
+.ksuor-off,
+.k70F27363_35245-off,
+.k70F27363_35780-off {
+    background-color: var(--green);
+}
+
+/*Optional courses */
+.k70F27363_35249-off {
+    background-color: var(--aqua);
+}
+
+.k70F27363_35763-off,
+.k70F27363_35783-off {
+    background-color: var(--red);
+}
+
+.k70F27363_35780-off {
+    background-color: var(--gray);
+}
+
+.k70F27363_35795-off {
+    background-color: var(--pink);
+}
+
+.k70F27363_35253-off,
+.k70F27363_35669-off {
+    background-color: var(--blue);
+}
+
+.k70F27363_35766-off {
+    background-color: var(--light-blue);
+}
