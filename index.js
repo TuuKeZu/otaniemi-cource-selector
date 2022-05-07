@@ -67,10 +67,10 @@ const Initialize = async () => {
     const CONTAINER = document.getElementById('container');
 
     const Render = () => {
-        state.periods = [];
+        state.periods = {};
         CONTAINER.replaceChildren([]);
 
-        state.data.periodit.forEach(period => {
+        state.data.periodit.forEach((period, index) => {
 
             if (state.periods[period.periodi] == null) {
                 const periodElement = document.createElement('div');
@@ -89,11 +89,22 @@ const Initialize = async () => {
             const barElement = document.createElement('div');
             barElement.className = 'bar';
 
+            const numberElement = document.createElement('h1');
+            numberElement.textContent = `${(index % 9) + 1}: `;
+
+            barElement.appendChild(numberElement);
+
             period.kurssit.forEach(course => {
                 const courseElement = document.createElement('div');
                 courseElement.id = state.selected.includes(course.nimi) ? 'course-selected' : 'course';
                 courseElement.className = course.class;
                 courseElement.textContent = course.nimi;
+
+                const detailElement = document.createElement('span');
+                detailElement.className = 'detail';
+                detailElement.innerHTML = course.tiedot.join('<br>');
+
+                courseElement.appendChild(detailElement);
 
                 barElement.appendChild(courseElement);
             });
@@ -105,7 +116,6 @@ const Initialize = async () => {
             CONTAINER.appendChild(state.periods[key]);
         })
     }
-
 
     Render();
 
@@ -123,5 +133,4 @@ const Initialize = async () => {
 
         Render();
     })
-
 }

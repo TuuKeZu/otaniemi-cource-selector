@@ -201,9 +201,29 @@ table {
     box-shadow: 1px 1px;
 }
 
+#course .detail {
+    visibility: hidden;
+    width: 300px;
+    height: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    left: 50%;
+    margin-left: -60px;
+}
 
 #course:hover {
     filter: brightness(80%);
+}
+
+#course:hover .detail {
+    visibility: visible;
 }
 
 #course-selected {
@@ -212,6 +232,7 @@ table {
     box-shadow: 1px 1px;
     filter: brightness(60%);
 }
+
 
 /*Classes scraped from Wilma*/
 
