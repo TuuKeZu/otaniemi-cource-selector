@@ -71,68 +71,78 @@ const Initialize = async () => {
     const COPY_BUTTON = document.getElementById('copy-button');
     const APPLY_BUTTON = document.getElementById('apply-button');
 
-    const Render = () => {
-        state.periods = {};
-        CONTAINER.replaceChildren([]);
-        console.log('Rendering..');
+    const Render = (periodID = String) => {
 
-        state.data.periodit.forEach((period, index) => {
+        // Initializing the period-containers
+        if (state.periods[periodID] == null) {
+            const periodElement = document.createElement('div');
+            periodElement.className = "period";
+            periodElement.id = periodID;
 
-            if (state.periods[period.periodi] == null) {
-                const periodElement = document.createElement('div');
-                periodElement.className = "period";
-                periodElement.id = period.periodi;
+            state.periods[periodID] = periodElement;
+            CONTAINER.appendChild(state.periods[periodID]);
+        }
 
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = `${period.periodi}. Periodi (Otaniemen lukio 2022 - 2023)`;
+        // Access the period we wish to render and clear the children of it
+        const periodElement = state.periods[periodID];
+        periodElement.replaceChildren([]);
 
-                periodElement.appendChild(titleElement);
+        // Appending title to the period
+        const titleElement = document.createElement('h3');
+        titleElement.textContent = `${periodID}. Periodi (Otaniemen lukio 2022 - 2023)`;
+        periodElement.appendChild(titleElement);
 
-                state.periods[period.periodi] = periodElement;
-            }
-
-            const periodElement = state.periods[period.periodi];
+        // Loop through every bar in the period
+        state.data.periodit.filter(period => period.periodi == periodID).forEach((bar, index) => {
+            // Create the bar element
             const barElement = document.createElement('div');
             barElement.className = 'bar';
 
+            // Creathe index for the bar
             const numberElement = document.createElement('h1');
             numberElement.textContent = `${(index % 9) + 1}: `;
-
             barElement.appendChild(numberElement);
 
-            period.kurssit.forEach(course => {
+            // Loop through every course in the bar
+            bar.kurssit.forEach(course => {
+                // Create the course element
                 const courseElement = document.createElement('div');
                 courseElement.id = state.selected.includes(course.nimi) ? 'course-selected' : state.selectedFriend.includes(course.nimi) ? 'course-friend' : 'course';
                 courseElement.className = course.class;
+
+                // Create the <h4> tha displays the course name
                 const nameElement = document.createElement('h2');
                 nameElement.textContent = course.nimi;
                 courseElement.appendChild(nameElement);
 
+                // Create the detail section for each course.
                 const detailElement = document.createElement('span');
                 detailElement.className = 'detail';
                 detailElement.innerHTML = course.tiedot.join('<br>');
-
                 courseElement.appendChild(detailElement);
 
+                // Append the course to the bar
                 barElement.appendChild(courseElement);
             });
 
+            // Append the bar to the period
             periodElement.appendChild(barElement);
         });
 
-        state.periodList.forEach(key => {
-            CONTAINER.appendChild(state.periods[key]);
-        });
-
+        // Update your current selections
         YOU_FIELD.value = JSON.stringify(state.selected);
     }
 
-    Render();
+    // Initialize by rendering everything
+    state.periodList.forEach(key => {
+        Render(key);
+    });
 
     document.addEventListener('click', (e) => {
         const allowed = ['course', 'course-selected']
         if (!allowed.includes(e.target.id)) return;
         const course = e.target.children[0].textContent;
+        const period = e.target.parentNode.parentNode.id;
 
         if (state.selected.includes(course)) {
             state.selected = removeSelectedCourse(course);
@@ -141,7 +151,7 @@ const Initialize = async () => {
             state.selected = setSelectedCourse(course);
         }
 
-        Render();
+        Render(period);
     });
 
     COPY_BUTTON.addEventListener('click', () => {
