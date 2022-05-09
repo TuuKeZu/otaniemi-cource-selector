@@ -133,10 +133,14 @@ const Initialize = async () => {
         YOU_FIELD.value = JSON.stringify(state.selected);
     }
 
-    // Initialize by rendering everything
-    state.periodList.forEach(key => {
-        Render(key);
-    });
+    const RenderAll = () => {
+        state.periodList.forEach(key => {
+            Render(key);
+        });
+    }
+
+    RenderAll();
+
 
     document.addEventListener('click', (e) => {
         const allowed = ['course', 'course-selected']
@@ -151,7 +155,9 @@ const Initialize = async () => {
             state.selected = setSelectedCourse(course);
         }
 
-        Render(period);
+        // Render(period);
+        RenderAll();
+
     });
 
     COPY_BUTTON.addEventListener('click', () => {
@@ -160,7 +166,7 @@ const Initialize = async () => {
 
     APPLY_BUTTON.addEventListener('click', () => {
         state.selectedFriend = JSON.parse(FRIEND_FIELD.value);
-        Render();
+        RenderAll();
     });
 
 }
